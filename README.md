@@ -6,3 +6,7 @@ Programming can be intimidating when moving from visual blocks to text. Kidduino
 Every complex feature — sensors, timers, or interrupts — is **hidden under simple interfaces**, so young programmers can quickly go from dragging blocks to writing structured C++ code.
 
 Let’s help the next generation of **kidgineers** explore the world of Arduino confidently and creatively!
+
+## Table of Contents
+### Sensors
+Ultrasonic sensor HC-SR04
