@@ -14,7 +14,7 @@
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 "",
-                "${workspaceFolder}/lib/sensors/ultrasonic"
+                "${workspaceFolder}/include/sensors/ultrasonic"
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
