@@ -9,5 +9,7 @@ void setup() {
 
 void loop() {
   sensor.update();
-  Serial.println(sensor.read());
+  Serial.print("Distance: ");
+  Serial.print(sensor.read());
+  Serial.println(" cm");
 }
