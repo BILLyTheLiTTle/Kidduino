@@ -21,6 +21,7 @@ private:
     float _distance;
 
     static UltrasonicSensorInterrupt* _instance;
+    static constexpr float SPEED_OF_SOUND = 0.034; // cm/µs
 
     static void _isrStatic();
     void _isr();

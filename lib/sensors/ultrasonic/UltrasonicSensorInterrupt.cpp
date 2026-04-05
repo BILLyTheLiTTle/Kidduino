@@ -53,7 +53,7 @@ void UltrasonicSensorInterrupt::update() {
         _ready = false;
         attachInterrupt(digitalPinToInterrupt(_echo), _isrStatic, CHANGE); //interrupts();
 
-        _distance = duration * 0.034 / 2;
+        _distance = duration * SPEED_OF_SOUND / 2;
     }
 }
 
