@@ -1,3 +1,8 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
 {
     "configurations": [
         {
@@ -7,14 +12,14 @@
                 "/Users/v.tsapalos/Documents/Kidduino/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs",
+                "/Users/v.tsapalos/Documents/Kidduino/lib/actuators",
                 "/Users/v.tsapalos/Documents/Kidduino/lib/sensors",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
-                "",
-                "${workspaceFolder}/include/sensors/ultrasonic"
+                ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
@@ -23,6 +28,7 @@
                     "/Users/v.tsapalos/Documents/Kidduino/src",
                     "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs",
+                    "/Users/v.tsapalos/Documents/Kidduino/lib/actuators",
                     "/Users/v.tsapalos/Documents/Kidduino/lib/sensors",
                     "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/HID/src",

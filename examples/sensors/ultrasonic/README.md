@@ -18,21 +18,21 @@ This way, beginners can start simple, while advanced users can choose more effic
 # Guidelines
 ## Ultrasonic sensor blocking reading example
 - Get `UltrasonicSensorBlockingExample.ino`
-- Get `include/sensors/ultrasonic/UltrasonicSensorBlocking.h`
+- Get `/include/sensors/ultrasonic/UltrasonicSensorBlocking.h`
 - Get `/lib/sensors/ultrasonic/UltrasonicSensorBlocking.cpp`
 - Store them in the same folder
 - Open the Arduino IDE and run the `UltrasonicSensorBlockingExample.ino`
 
 ## Ultrasonic sensor polling reading example
 - Get `UltrasonicSensorPollingExample.ino`
-- Get `include/sensors/ultrasonic/UltrasonicSensorPolling.h`
+- Get `/include/sensors/ultrasonic/UltrasonicSensorPolling.h`
 - Get `/lib/sensors/ultrasonic/UltrasonicSensorPolling.cpp`
 - Store them in the same folder
 - Open the Arduino IDE and run the `UltrasonicSensorPollingExample.ino`
 
 ## Ultrasonic sensor reading with interrupt example
 - Get `UltrasonicSensorInterruptExample.ino`
-- Get `include/sensors/ultrasonic/UltrasonicSensorInterrupt.h`
+- Get `/include/sensors/ultrasonic/UltrasonicSensorInterrupt.h`
 - Get `/lib/sensors/ultrasonic/UltrasonicSensorInterrupt.cpp`
 - Store them in the same folder
 - Open the Arduino IDE and run the `UltrasonicSensorInterruptExample.ino`
