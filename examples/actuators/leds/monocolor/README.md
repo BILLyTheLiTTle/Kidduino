@@ -9,7 +9,7 @@ It provides four simple ways to control the LED:
 - **autoToggle**: Automatically toggles the LED on and off at a given time interval
 
 # Guidelines
-## Ultrasonic sensor blocking reading example
+## LED driver example
 - Get `LedDriverExample.ino`
 - Get `/include/actuators/leds/monocolor/LedDriver.h`
 - Get `/lib/actuators/leds/monocolor/LedDriver.cpp`
