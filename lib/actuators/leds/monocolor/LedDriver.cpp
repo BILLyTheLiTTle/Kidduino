@@ -1,6 +1,6 @@
 #include "LedDriver.h"
 
-LedDriver::Led(uint8_t pin)
+LedDriver::LedDriver(uint8_t pin)
     : _pin(pin), _state(false), _lastToggle(0) {}
 
 void LedDriver::begin() {
