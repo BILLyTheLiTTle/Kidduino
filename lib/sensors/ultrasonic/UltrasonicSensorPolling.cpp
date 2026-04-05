@@ -26,7 +26,7 @@ void UltrasonicSensorPolling::_sendTrigger() {
 }
 
 float UltrasonicSensorPolling::read() {
-    unsigned long now = millis();
+    unsigned long now = micros();
 
     // Trigger new pulse if enough time passed
     if (!_waiting && now - _lastTrigger >= TRIGGER_INTERVAL) {
@@ -37,9 +37,9 @@ float UltrasonicSensorPolling::read() {
     // Check for pulse measurement
     if (_waiting) {
         if (digitalRead(_echo) == HIGH && _pulseStart == 0) {
-            _pulseStart = millis();
+            _pulseStart = micros();
         } else if (digitalRead(_echo) == LOW && _pulseStart != 0) {
-            _pulseEnd = millis();
+            _pulseEnd = micros();
             unsigned long duration = _pulseEnd - _pulseStart;
             _distance = duration * SPEED_OF_SOUND / 2.0f;
             _pulseStart = 0;
