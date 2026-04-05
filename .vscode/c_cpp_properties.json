@@ -14,8 +14,8 @@
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
-                "",
-                "${workspaceFolder}/include/sensors/ultrasonic"
+                "${workspaceFolder}/include/sensors/ultrasonic",
+                "${workspaceFolder}/include/actuators/leds/monocolor"
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
