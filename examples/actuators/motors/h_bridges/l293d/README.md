@@ -1,5 +1,3 @@
-**DO NOT TRY THIS MODULE, NEEDS TESTING!!!**
-
 # Introduction
 This library works with **standard DC motors** connected via an L293D H-bridge to your Arduino board.
 
