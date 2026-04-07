@@ -1,5 +1,4 @@
-#ifndef MOTOR_DRIVER_H
-#define MOTOR_DRIVER_H
+#pragma once
 
 #include <Arduino.h>
 
@@ -29,5 +28,3 @@ public:
 
     virtual ~MotorDriver() {}
 };
-
-#endif

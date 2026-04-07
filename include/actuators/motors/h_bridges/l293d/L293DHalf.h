@@ -1,5 +1,4 @@
-#ifndef L293D_HALF_H
-#define L293D_HALF_H
+#pragma once
 
 #include "MotorDriver.h"
 
@@ -26,5 +25,3 @@ public:
     void setMode(SystemSettings m) override;
     void setRamp(UserSettings r) override;
 };
-
-#endif
