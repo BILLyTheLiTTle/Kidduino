@@ -27,6 +27,7 @@ void L293DHalf::applyPWM(uint8_t targetPWM, UserSettings effectiveRamp) {
         if (currentPWM < targetPWM) currentPWM++;
         else if (currentPWM > targetPWM) currentPWM--;
     }
+    currentPWM = constrain(currentPWM, 0, 255);
 
     analogWrite(en, currentPWM);
 }

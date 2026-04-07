@@ -37,6 +37,8 @@ void L293DFull::applyPWM(uint8_t targetPWM, UserSettings effectiveRamp) {
         if (pwmB < targetPWM) pwmB++;
         else if (pwmB > targetPWM) pwmB--;
     }
+    pwmA = constrain(pwmA, 0, 255);
+    pwmB = constrain(pwmB, 0, 255);
 
     analogWrite(en1, pwmA);
     analogWrite(en2, pwmB);
