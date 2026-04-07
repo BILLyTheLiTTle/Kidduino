@@ -16,7 +16,9 @@
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 "",
-                "${workspaceFolder}/include/actuators/servo"
+                "${workspaceFolder}/include/actuators/servo",
+                "${workspaceFolder}/include/actuators/motors/h_bridges",
+                "${workspaceFolder}/include/actuators/motors/h_bridges/l293d"
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
