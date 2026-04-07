@@ -1,6 +1,6 @@
 #include "L293DFull.h"
 
-static const uint8_t MIN_PWM = 50;
+static const uint8_t MIN_PWM = 5;
 static const uint8_t MAX_PWM = 255;
 
 L293DFull::L293DFull(uint8_t pinIn1, uint8_t pinIn2, uint8_t pinEn1,
