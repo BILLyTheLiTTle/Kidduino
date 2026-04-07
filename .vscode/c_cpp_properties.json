@@ -1,3 +1,8 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
 {
     "configurations": [
         {
@@ -9,6 +14,8 @@
                 "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors",
                 "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors/servo",
                 "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors/h_bridges/l293d",
+                "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors/h_bridges/bts7960",
+                "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors/h_bridges/tb6612fng",
                 "/Users/v.tsapalos/Documents/Kidduino/include/actuators/leds/rgb",
                 "/Users/v.tsapalos/Documents/Kidduino/include/actuators/leds/monocolor",
                 "/Users/v.tsapalos/Documents/Kidduino/include/sensors/ultrasonic",
@@ -22,7 +29,7 @@
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "/Users/v.tsapalos/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
-                "",
+                ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
@@ -33,6 +40,8 @@
                     "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors",
                     "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors/servo",
                     "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors/h_bridges/l293d",
+                    "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors/h_bridges/bts7960",
+                    "/Users/v.tsapalos/Documents/Kidduino/include/actuators/motors/h_bridges/tb6612fng",
                     "/Users/v.tsapalos/Documents/Kidduino/include/actuators/leds/rgb",
                     "/Users/v.tsapalos/Documents/Kidduino/include/actuators/leds/monocolor",
                     "/Users/v.tsapalos/Documents/Kidduino/include/sensors/ultrasonic",

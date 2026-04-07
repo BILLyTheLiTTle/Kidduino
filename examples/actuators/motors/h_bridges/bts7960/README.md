@@ -1,7 +1,7 @@
 **DO NOT TRY THIS MODULE, NEEDS TESTING!!!**
 
 # Introduction
-This library works with **standard DC motors** connected via an L293D H-bridge to your Arduino board.
+This library works with **standard DC motors** connected via an BTS7960 H-bridge to your Arduino board.
 
 ## System vs User Settings
 - System Settings (`NORMAL`, `SAFE`)
@@ -24,9 +24,6 @@ This library works with **standard DC motors** connected via an L293D H-bridge t
   - `brake()` – actively stops the motor.
   - `coast()` – lets the motor spin freely without applying power.
   - Useful for teaching concepts like inertia and controlled stopping.
-- Dual Motor Support
-  - `L293DFull` handles two motors independently with the same interface.
-  - Each motor can move forward/backward, brake, or coast individually or together.
 
 ## Usage Scenarios
 - Immediate moves
@@ -44,16 +41,9 @@ This library works with **standard DC motors** connected via an L293D H-bridge t
 This setup lets beginners control DC motors simply, while giving advanced users full access to ramp control, SAFE modes, and dual motor operation without blocking the main loop.
 
 # Guidelines
-## L293D Half H-Bridge example
-- Get `L293DHalfExample.ino`
-- Get `/include/actuators/h_bridges/l293d/L293DHalf.h`
-- Get `/lib/sensors/actuators/h_bridges/l293d/L293DHalf.cpp`
+## BTS7960 H-Bridge example
+- Get `BTS7960Example.ino`
+- Get `/include/actuators/h_bridges/bts7960/BTS7960Half.h`
+- Get `/lib/sensors/actuators/h_bridges/bts7960/BTS7960Half.cpp`
 - Store them in the same folder
-- Open the Arduino IDE and run the `L293DHalfExample.ino`
-
-## L293D Full H-Bridge example
-- Get `L293DFullExample.ino`
-- Get `/include/actuators/h_bridges/l293d/L293DFull.h`
-- Get `/lib/sensors/actuators/h_bridges/l293d/L293DFull.cpp`
-- Store them in the same folder
-- Open the Arduino IDE and run the `L293DFullExample.ino`
+- Open the Arduino IDE and run the `BTS7960Example.ino`
