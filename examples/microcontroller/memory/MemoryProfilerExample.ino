@@ -1,4 +1,3 @@
-#include <float.h>
 #include "MemoryProfiler.h"
 
 MemoryProfiler ram(2048);

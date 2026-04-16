@@ -1,99 +1,123 @@
 # AVR MEMORY MODEL (SIMPLIFIED BUT CORRECT)
 
 ## FLASH (PROGRAM MEMORY)
-- Non-volatile memory (code storage)
-- CPU executes from here
-  .text
-    -> compiled program instructions
+- Non-volatile memory (stores firmware permanently)
+- CPU executes program code from here
 
-  .rodata
-    -> constant data (string literals, const globals)
-    -> e.g. "hello", lookup tables
+### .text
+- Compiled program instructions (your actual code)
 
-NOTE:
-- Flash is NOT directly RAM-accessible as normal pointers
-- Special instructions are used to read it
+### .rodata
+- Read-only constant data stored in Flash
+- Examples:
+  - string literals: `"hello"`
+  - `const` global variables (often placed here on AVR)
+  - lookup tables (a precomputed set of values stored in memory so you don’t compute them at runtime)
+
+### .data load image (IMPORTANT, often hidden)
+- Initial values for SRAM .data variables (not the variables themselves, just the value)
+  - global initialized variables
+  - static initialized variables
+- Exists in Flash only as a startup copy source
+- Copied into SRAM at boot
+
+### NOTE
+- Flash is not directly writable at runtime like SRAM
+- On AVR, Flash is not normally accessed with standard RAM pointers for reading/writing
+  - reading is handled transparently by the CPU instruction fetch
+  - special mechanisms are used when needed (e.g. `PROGMEM`, `pgm_read_*` on AVR)
+- Writing to Flash requires dedicated erase/write sequences (not normal memory writes)
 
 ---
 
-## SRAM (NORMAL RAM - 2KB on ATmega328P)
+## SRAM (NORMAL RAM – 2KB on ATmega328P)
 
-LOW MEMORY (0x0000)
+**LOW MEMORY (0x0000)**
 |
-|  .data
-|    -> global/static variables WITH initial values
-|    -> copied from Flash at startup
+
+**.data**
+- Global/static variables **with** initial values
+- Stored in SRAM at runtime
+- Initial values are copied from Flash at startup (from `.data load image`)
+- Includes only variables, NOT code or string literals
+- After boot, fully writable RAM
+
+**.bss**
+- Global/static variables **without** explicit initialization
+- Automatically set to 0 at startup
+- Stored entirely in SRAM (no Flash copy involved)
+
+**HEAP**
+- Dynamic memory (`malloc`, `free`, `new`, `delete`)
+- Grows upward in SRAM
+- Used rarely in safe embedded design (fragmentation risk)
+
+**FREE RAM**
+- Unused SRAM region between heap and stack
+- Not a real section, just remaining space
+
+**STACK**
+- Function call frames
+- Local variables (non-static)
+- Interrupt context saving
+- Grows downward from top of SRAM
+- Very fast but limited space
+
 |
-|  .bss
-|    -> global/static variables initialized to 0
-|    -> cleared at startup
-|
-|  HEAP
-|    -> dynamic memory (malloc/free)
-|    -> grows upward
-|
-|  FREE RAM
-|    -> unused SRAM between heap and stack
-|
-|  STACK
-|    -> function calls + local variables
-|    -> grows downward
-|
-HIGH MEMORY (end of SRAM)
+**HIGH MEMORY (end of SRAM)**
 
 ---
 
 ### POINTER MODEL IN SRAM
-- normal pointers live in SRAM:
-    char*, int*, struct*
-- they point to SRAM addresses by default
+- Normal pointers (`char*`, `int*`, `struct*`) point to **SRAM addresses by default**
+- Pointer values themselves are stored in SRAM (stack, heap, or globals)
 
-IMPORTANT:
-- Flash pointers are NOT normal pointers
-- they require special handling (e.g. F(), pgm_read)
-
----
-
-### LINKER SYMBOLS
-__bss_start
-    -> start of .bss section
-
-__bss_end
-    -> end of .data + .bss
-    -> start of heap region
-
-__heap_start
-    -> first address available for heap allocation
-
-__brkval
-    -> current heap end (0 if heap unused)
+#### IMPORTANT
+- SRAM pointers do NOT directly access Flash
+- Flash data requires special handling:
+  - `F()` macro (AVR Flash strings)
+  - `PROGMEM`
+  - `pgm_read_*` functions
 
 ---
 
-## IMPORTANT RULES
-1. FLASH holds code + constants (.text, .rodata)
-2. SRAM holds runtime state (.data, .bss, heap, stack)
-3. .data is copied from FLASH into SRAM at startup
-4. heap and stack share same SRAM space (grow towards each other)
-5. stack overflow can corrupt heap and globals
-6. memory is not protected (no MMU on AVR)
+### LINKER SYMBOLS (INTERNAL MEMORY MANAGEMENT)
+- `__bss_start`
+  - Start of .bss section in SRAM
+- `__bss_end`
+  - End of .bss
+  - Typically used to locate heap start boundary
+- `__heap_start`
+  - First usable heap address in SRAM
+- `__brkval`
+  - Current heap boundary (updated by malloc)
+  - `0` means heap not yet used
+
+#### IMPORTANT RULES
+- Flash stores code + constants (`.text`, `.rodata`, `.data load image`)
+- SRAM stores runtime state (`.data`, `.bss`, heap, stack)
+- `.data` is copied from Flash into SRAM at startup
+- Heap grows upward, stack grows downward (they collide = crash)
+- AVR has no memory protection (no MMU → silent corruption possible)
+- SRAM is the real “working memory” of the system — Flash is just source + program storage
 
 ---
+### MMU
 
-## What an MMU is
+### What an MMU is
 An MMU is hardware that sits between CPU and memory and does things like:
 - translate virtual addresses → physical addresses
 - enforce memory protection rules
 - isolate processes from each other
 - stop illegal memory access
 
-## What it means in practice
+### What it means in practice
 With MMU (modern PCs, phones):
 - program A cannot touch program B’s memory
 - stack overflow gets caught
 - segmentation faults happen instead of silent corruption
 
-# Usage of code
+# Usage of this code
 This module works with **AVR SRAM memory profiling**, allowing you to inspect heap usage, stack position, and estimated free/used RAM at runtime.
 
 It relies on internal linker symbols (`__bss_end`, `__brkval`) and a stack probe variable to estimate memory layout.
