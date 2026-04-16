@@ -16,8 +16,8 @@
 
 ### .data load image (IMPORTANT, often hidden)
 - Initial values for SRAM .data variables (not the variables themselves, just the value)
-  - global initialized variables
-  - static initialized variables
+  - values of global initialized variables
+  - values of static initialized variables
 - Exists in Flash only as a startup copy source
 - Copied into SRAM at boot
 
