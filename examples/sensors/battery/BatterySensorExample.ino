@@ -9,7 +9,7 @@ void setup() {
 }
 
 void loop() {
-    float v = battery.readFilteredVoltage();
+    float v = battery.readVoltage() / 1000.0f;
     int p = battery.readPercent();
 
     Serial.print("Battery: ");
