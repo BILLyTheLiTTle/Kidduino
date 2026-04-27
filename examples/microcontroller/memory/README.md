@@ -11,7 +11,8 @@
 - Read-only constant data stored in Flash
 - Examples:
   - string literals: `"hello"`
-  - `const` global variables (often placed here on AVR)
+  - Every `const` (`const`, `static const`) global variables (often placed here on AVR)
+    - `constexpr` of C++ takes no place in any memory (Flash, RAM), because the value is used directly during compiling
   - lookup tables (a precomputed set of values stored in memory so you don’t compute them at runtime)
 
 ### .data load image (IMPORTANT, often hidden)
