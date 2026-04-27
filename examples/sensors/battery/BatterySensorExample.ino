@@ -9,14 +9,25 @@ void setup() {
 }
 
 void loop() {
-    float v = battery.readVoltage() / 1000.0f;
-    int p = battery.readPercent();
+    uint16_t voltage = battery.readVoltage();
 
-    Serial.print("Battery: ");
+    uint8_t voltage_int = voltage / 1000; 
+    uint8_t voltage_frac = (voltage % 1000) / 10; // convert fraction to centiVolts to avoid 3 digits and show only 2 digits
+
+    uint8_t p = battery.readPercent();
+
+    Serial.print(F(" Battery: "));
     Serial.print(p);
-    Serial.print("% (");
-    Serial.print(v);
-    Serial.println("V)");
+    Serial.print(F("% ("));
+    Serial.print(voltage_int);
+    Serial.print(F("."));
+    if (voltage_frac < 10)  Serial.print(F("0"));
+    Serial.print(voltage_frac);
+    Serial.println(F("V)"));
+
+    if(voltage <= Battery::LOWER_BOUND_VOLTAGE) {
+        Serial.println(F("  Batteries need to recharge!"));
+    }
 
     delay(1000);
 }
