@@ -40,5 +40,5 @@
 # debug information files
 *.dwo
 
-# Mac OS files
-.DS_Store
+.pio/
+.vscode/
