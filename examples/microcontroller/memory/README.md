@@ -8,7 +8,7 @@
 - Compiled program instructions (your actual code)
 
 ### .rodata
-- Unlike a PC, the AVR CPU cannot read data directly from Flash using standard instructions. Therefore, by default, the startup script copies all .rodata from Flash into RAM so the CPU can access it.
+- Unlike a PC, the AVR CPU cannot read data directly from Flash using standard instructions. Therefore, by default, the startup script copies almost all .rodata from Flash into RAM so the CPU can access it.
 - Examples:
   - String Literals (`"hello"`): 
     - Stored in Flash, but copied to RAM at startup.
