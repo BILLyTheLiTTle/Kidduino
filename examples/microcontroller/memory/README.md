@@ -8,12 +8,18 @@
 - Compiled program instructions (your actual code)
 
 ### .rodata
-- Read-only constant data stored in Flash
+- Unlike a PC, the AVR CPU cannot read data directly from Flash using standard instructions. Therefore, by default, the startup script copies all .rodata from Flash into RAM so the CPU can access it.
 - Examples:
-  - string literals: `"hello"`
-  - Every `const` (`const`, `static const`) global variables (often placed here on AVR)
-    - `constexpr` of C++ takes no place in any memory (Flash, RAM), because the value is used directly during compiling
-  - lookup tables (a precomputed set of values stored in memory so you don’t compute them at runtime)
+  - String Literals (`"hello"`): 
+    - Stored in Flash, but copied to RAM at startup.
+    - Use the F() macro to keep them exclusively in Flash.
+  - Global `const` / `static const` variables: 
+    - Stored in Flash, but copied to RAM at startup.
+    - Use the PROGMEM attribute to prevent the copy to RAM.
+  - Lookup Tables: Precomputed sets of values that will consume both Flash and RAM unless explicitly declared with `PROGMEM`.
+  - `constexpr` (C++):
+    - For simple scalars (e.g., `constexpr int limit = 10;`), the value is usually "inlined" directly into the machine code instructions. It occupies no dedicated space in RAM or Flash data sections.
+    - For arrays or complex objects, they behave like const variables and will be copied to RAM unless `PROGMEM` is used.
 
 ### .data load image (IMPORTANT, often hidden)
 - Initial values for SRAM .data variables (not the variables themselves, just the value)
