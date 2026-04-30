@@ -8,18 +8,18 @@
 - Compiled program instructions (your actual code)
 
 ### .rodata
-- Unlike a PC, the AVR CPU cannot read data directly from Flash using standard instructions. Therefore, by default, the startup script copies almost all .rodata from Flash into RAM so the CPU can access it.
+- Unlike a PC, the AVR CPU cannot read data directly from Flash using standard instructions. Therefore, by default, the startup script copies almost all .rodata from Flash into SRAM so the CPU can access it.
 - Examples:
   - String Literals (`"hello"`): 
-    - Stored in Flash, but copied to RAM at startup.
-    - Use the F() macro to keep them exclusively in Flash.
+    - Stored in Flash, but copied to SRAM at startup.
+    - Use the `F()` macro to keep them exclusively in Flash.
   - Global `const` / `static const` variables: 
-    - Stored in Flash, but copied to RAM at startup.
-    - Use the PROGMEM attribute to prevent the copy to RAM.
-  - Lookup Tables: Precomputed sets of values that will consume both Flash and RAM unless explicitly declared with `PROGMEM`.
+    - Stored in Flash, but copied to SRAM at startup.
+    - Use the PROGMEM attribute to prevent the copy to SRAM.
+  - Lookup Tables: Precomputed sets of values that will consume both Flash and SRAM unless explicitly declared with `PROGMEM`.
   - `constexpr` (C++):
-    - For simple scalars (e.g., `constexpr int limit = 10;`), the value is usually "inlined" directly into the machine code instructions. It occupies no dedicated space in RAM or Flash data sections.
-    - For arrays or complex objects, they behave like const variables and will be copied to RAM unless `PROGMEM` is used.
+    - For simple scalars (e.g., `constexpr int limit = 10;`), the value is usually "inlined" directly into the machine code instructions. It occupies no dedicated space in SRAM or Flash data sections.
+    - For arrays or complex objects, they behave like const variables and will be copied to SRAM unless `PROGMEM` is used.
 
 ### .data load image (IMPORTANT, often hidden)
 - Initial values for SRAM .data variables (not the variables themselves, just the value)
@@ -30,7 +30,7 @@
 
 ### NOTE
 - Flash is not directly writable at runtime like SRAM
-- On AVR, Flash is not normally accessed with standard RAM pointers for reading/writing
+- On AVR, Flash is not normally accessed with standard SRAM pointers for reading/writing
   - reading is handled transparently by the CPU instruction fetch
   - special mechanisms are used when needed (e.g. `PROGMEM`, `pgm_read_*` on AVR)
 - Writing to Flash requires dedicated erase/write sequences (not normal memory writes)
@@ -47,7 +47,7 @@
 - Stored in SRAM at runtime
 - Initial values are copied from Flash at startup (from `.data load image`)
 - Includes only variables, NOT code or string literals
-- After boot, fully writable RAM
+- After boot, fully writable SRAM
 
 **.bss**
 - Global/static variables **without** explicit initialization
@@ -131,8 +131,8 @@ It relies on internal linker symbols (`__bss_end`, `__brkval`) and a stack probe
 
 It provides several simple ways to inspect memory state:
 - `getHeapUsed`: Returns the current heap usage in bytes (difference between `_end` of `.bss` and heap end pointer)
-- `getFreeRam`: Estimates free RAM by measuring the gap between heap and stack
-- `getUsedRamApprox`: Approximates total used RAM as `total RAM - free RAM`
+- `getFreeRam`: Estimates free SRAM by measuring the gap between heap and stack
+- `getUsedRamApprox`: Approximates total used SRAM as `total RAM - free RAM`
 - `getStackPointer`: Returns the current stack pointer address (via local variable address)
 - `getHeapEnd`: Returns the current heap end (`__brkval`), useful for debugging heap growth
 
