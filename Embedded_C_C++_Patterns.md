@@ -112,7 +112,7 @@ Use `&` whenever you need to **isolate**, **filter**, or **query** specific bits
 
 **Truth table**
   
-|     A    |    B    |  A & B  |
+|     A    |    B    | A AND B |
 | -------- | ------- | ------- |
 |     0    |    0    |    0    |
 |     0    |    1    |    0    |
@@ -128,7 +128,7 @@ Use `|` whenever you need to **set**, **combine**, or **activate** specific bits
 
 **Truth table**
 
-|     A    |    B    |  A | B  |
+|     A    |    B    |  A OR B |
 | -------- | ------- | ------- |
 |     0    |    0    |    0    |
 |     0    |    1    |    1    |
@@ -145,7 +145,7 @@ Use `^` whenever you need to **flip**, **toggle**, or **compare differences** in
 
 **Truth table**
 
-|     A    |    B    |  A & B  |
+|     A    |    B    | A XOR B |
 | -------- | ------- | ------- |
 |     0    |    0    |    0    |
 |     0    |    1    |    1    |
@@ -165,7 +165,7 @@ Use `~` when you need to **invert a pattern** or **create a "Clear Mask"**. It i
 
 **Truth table**
 
-|     A    |   ~A    |
+|     A    |   NOT A |
 | -------- | ------- |
 |     0    |    1    |
 |     1    |    0    |
