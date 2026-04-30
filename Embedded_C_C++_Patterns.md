@@ -56,12 +56,12 @@ uint32_t *p32 = data;
 p32 += 2;
 printf("%d", *p32);
 ```
-Steps to solution:
-Part 1:
-`uint32_t *p32 = &data[0]` -> Always `array` is `&array[0]`
-Part 2:
-`p32 += 2` -> `p32 = p32 + 2` => (use part 1) => `p32 = &data[0] + 2` -> `p32 = &data[2]`
-Solution:
+Steps to solution:<br>
+Part 1:<br>
+`uint32_t *p32 = &data[0]` -> Always `array` is `&array[0]`<br>
+Part 2:<br>
+`p32 += 2` -> `p32 = p32 + 2` => (use part 1) => `p32 = &data[0] + 2` -> `p32 = &data[2]`<br>
+Solution:<br>
 `printf("%d", *p32)` => The `*` does the dereference => Prints `3`.
 
 **Example 2**
@@ -76,14 +76,14 @@ printf("%d", *z);
 // uint8_t **x = p + a;
 //printf("%d", **x);
 ```
-Steps to solution:
-Part 1:
-`uint8_t **p = data;` => `uint8_t **p = &data[0]` => `uint8_t **p = &(&a)` => So `p` contains `&(&a)` since the `**` are in declaration part and not dereferencing it.
-Part 2:
+Steps to solution:<br>
+Part 1:<br>
+`uint8_t **p = data;` => `uint8_t **p = &data[0]` => `uint8_t **p = &(&a)` => So `p` contains `&(&a)` since the `**` are in declaration part and not dereferencing it.<br>
+Part 2:<br>
 `uint8_t *z = *(p + b);` => (use part 1) => `uint8_t *z = *(&data[0] + b);` => (b = 2) => `uint8_t *z = *(&data[0] + 2);` =>
-`uint8_t *z = *(&data[2]);` => (`*` eliminates with `&`) => `uint8_t *z = data[2];` => `uint8_t *z = &c;` => `z = &c` and `*z = 3`
-Solution:
-`printf("%d", *z);` => The `*` does the dereference => Prints `3`.
+`uint8_t *z = *(&data[2]);` => (`*` eliminates with `&`) => `uint8_t *z = data[2];` => `uint8_t *z = &c;` => `z = &c` and `*z = 3`<br>
+Solution:<br>
+`printf("%d", *z);` => The `*` does the dereference => Prints `3`.<br>
 
 This way you could solve difficult pointer assignments using you mind! This is no C/C++ but some simple math to solve puzzles, so can you solve the commented code from example 2?
 
@@ -104,12 +104,14 @@ In embedded systems, **speed is tied to simplicity**. Standard `math.h` librarie
 # Bitwise Operators
 
 ## Bitwise AND Operator (`&`)
-In Arduino programming, the `&` operator is used to perform logic at the hardware level. Unlike the logical AND (`&&`), which evaluates true/false statements, the bitwise `&` looks at the binary structure of a variable. 
+In Arduino programming, the `&` operator is used to perform logic at the hardware level. Unlike the logical AND (`&&`), which evaluates true/false statements, the bitwise `&` looks at the binary structure of a variable. <br>
 Use `&` whenever you need to **isolate**, **filter**, or **query** specific bits within a variable without changing the rest of the data. It is the "scalpel" of embedded C++:
 - **Masking (Clearing Bits)**: The process of clearing specific bits while keeping others
 - **Checking a Specific Bit**: Checking the state of a single pin in a hardware register without affecting the rest.
 - **Fast Math (Modulo)**: A common trick is using `&` to perform a modulo operation on powers of two. For example, `x & 7` is a lightning-fast way to calculate `x % 8`.
+
 **Truth table**
+  
 |     A    |    B    |  A & B  |
 | -------- | ------- | ------- |
 |     0    |    0    |    0    |
@@ -118,12 +120,14 @@ Use `&` whenever you need to **isolate**, **filter**, or **query** specific bits
 |     1    |    1    |    1    |
 
 ## Bitwise OR Operator (`|`)
-In Arduino programming, the `|` operator is primarily used for "Bit Setting." While the AND (`&`) operator acts as a filter to remove bits, the OR operator acts as a tool to "force" specific bits to become 1 without disturbing the other bits in a variable. This is essential when configuring hardware registers where you want to enable a specific feature (like a Timer or an Interrupt) while leaving the rest of the configuration untouched.
+In Arduino programming, the `|` operator is primarily used for "Bit Setting." While the AND (`&`) operator acts as a filter to remove bits, the OR operator acts as a tool to "force" specific bits to become 1 without disturbing the other bits in a variable. This is essential when configuring hardware registers where you want to enable a specific feature (like a Timer or an Interrupt) while leaving the rest of the configuration untouched.<br>
 Use `|` whenever you need to **set**, **combine**, or **activate** specific bits within a variable. It is the "switch" that turns bits on without turning others off:
 - **Setting Bits (Turn ON)**: If you want to turn on the Nth bit of a register without knowing what the other bits are currently doing.
 - **Combining Flags**: Many libraries use bitwise OR to combine multiple options into a single command.
 - **Building Values from Bytes**: If you are reading two 8-bit bytes from a sensor and want to combine them into a single 16-bit integer
+
 **Truth table**
+
 |     A    |    B    |  A | B  |
 | -------- | ------- | ------- |
 |     0    |    0    |    0    |
@@ -132,13 +136,15 @@ Use `|` whenever you need to **set**, **combine**, or **activate** specific bits
 |     1    |    1    |    1    |
 
 ## Bitwise XOR Operator (`^`)
-In Arduino development, the `^` operator is the ultimate "**Toggle Switch**". While OR sets a bit and AND clears a bit, XOR flips a bit to its opposite state. This makes it incredibly useful for blinking LEDs, reversing status flags, or creating simple encryption and checksums. Because XORing a value with itself results in zero, it is also a classic trick for clearing registers or checking if two data sets are identical.
+In Arduino development, the `^` operator is the ultimate "**Toggle Switch**". While OR sets a bit and AND clears a bit, XOR flips a bit to its opposite state. This makes it incredibly useful for blinking LEDs, reversing status flags, or creating simple encryption and checksums. Because XORing a value with itself results in zero, it is also a classic trick for clearing registers or checking if two data sets are identical.<br>
 Use `^` whenever you need to **flip**, **toggle**, or **compare differences** in bits. It is the "toggle button" of the bitwise world:
 - **Toggling Bits (The Blink Trick)**: If you want to flip a bit from 1 to 0 (or 0 to 1) without checking its current state
 - **Simple Checksums (Parity)**: XOR is often used in communication protocols (like NMEA for GPS) to create a "checksum."
 - **Swapping Values**: In low-memory environments, you can swap two variables without using a temporary third variable (the "XOR Swap Algorithm")
 - **"Is Different" Check**: If you XOR two variables and the result is non-zero, you know at least one bit is different
+
 **Truth table**
+
 |     A    |    B    |  A & B  |
 | -------- | ------- | ------- |
 |     0    |    0    |    0    |
@@ -147,7 +153,7 @@ Use `^` whenever you need to **flip**, **toggle**, or **compare differences** in
 |     1    |    1    |    0    |
 
 ## Bitwise NOT / One's Complement (`~`)
-In Arduino programming, `~` is used for "**Inverting Logic**". It is the binary equivalent of saying "the exact opposite." While the logical NOT (`!`) turns a "true" into a "false," the bitwise `~` transforms the entire binary representation of a value. It is most frequently used in combination with the AND (`&`) operator to clear specific bits (turning them OFF) while leaving all other bits exactly as they were.
+In Arduino programming, `~` is used for "**Inverting Logic**". It is the binary equivalent of saying "the exact opposite." While the logical NOT (`!`) turns a "true" into a "false," the bitwise `~` transforms the entire binary representation of a value. It is most frequently used in combination with the AND (`&`) operator to clear specific bits (turning them OFF) while leaving all other bits exactly as they were.<br>
 Use `~` when you need to **invert a pattern** or **create a "Clear Mask"**. It is the "opposite day" operator for binary data:
 - **Clearing Bits (The "Mask-AND-NOT" Trick)**: This is the most common use case in embedded C. If you want to turn OFF a specific bit (e.g., bit 2) without changing anything else, you AND the register with the inverse of that bit.
   1. Target bit: 00000100 (Bit 2)
@@ -156,21 +162,23 @@ Use `~` when you need to **invert a pattern** or **create a "Clear Mask"**. It i
   4. Result: Bit 2 is forced to 0, but all other bits are "protected" by the 1s.
 - **Inverting Active-Low Logic**: If you are working with hardware that is "Active-Low" (where 0 means ON and 1 means OFF), you can use `~` to flip your program's internal logic to match the physical state of the pins.
 - **Creating All-On Patterns**: In unsigned math, `~0` is a quick way to generate a value where every single bit is set to 1, regardless of whether the variable is 8-bit, 16-bit, or 32-bit.
+
 **Truth table**
+
 |     A    |   ~A    |
 | -------- | ------- |
 |     0    |    1    |
 |     1    |    0    |
 
 ## Bitwise Shift Right (`>>`)
-In Arduino programming, shifting right is the most efficient way to **divide by powers of two** or to **extract specific data** from a larger value. Because it moves bits toward the "Least Significant Bit" (the right side), it effectively reduces the value of the number. For example, shifting a value right by 1 position is mathematically the same as dividing by 2, but it happens much faster than standard division because the CPU simply slides the bits over in a single clock cycle.
+In Arduino programming, shifting right is the most efficient way to **divide by powers of two** or to **extract specific data** from a larger value. Because it moves bits toward the "Least Significant Bit" (the right side), it effectively reduces the value of the number. For example, shifting a value right by 1 position is mathematically the same as dividing by 2, but it happens much faster than standard division because the CPU simply slides the bits over in a single clock cycle.<br>
 Use `>>` whenever you need to **scale down** a value or **discard lower bits** to get to the important data hidden in the higher positions. It is the "slide and divide" tool for binary data:
 - **High-Speed Division**: If you need to divide a number by 2, 4, 8, or 16, use `>>`. This is a massive performance boost on 8-bit Arduinos that don't have a hardware division unit.
 - **Extracting Bytes from Integers**: If you have a 16-bit int and you only want the "High Byte" (the top 8 bits) to send over I2C or Serial.
 - **Reading Serial Data**: When reconstructing a value from multiple bytes received over a sensor bus, you often shift bits into their correct "weight" or position.
 
 ## Bitwise Shift Left (`<<`)
-In Arduino programming, shifting left is the fastest way to **multiply by powers of two** or to **position a bit** into a specific slot in a register. Because it moves bits toward the "Most Significant Bit" (the left side), it effectively doubles the value of the number for every position shifted. It is the primary tool used for "Bit Construction," where you take a single bit and move it to the exact location needed to turn on a specific hardware feature.
+In Arduino programming, shifting left is the fastest way to **multiply by powers of two** or to **position a bit** into a specific slot in a register. Because it moves bits toward the "Most Significant Bit" (the left side), it effectively doubles the value of the number for every position shifted. It is the primary tool used for "Bit Construction," where you take a single bit and move it to the exact location needed to turn on a specific hardware feature.<br>
 Use `<<` whenever you need to **scale up** a value or **place a bit** into a specific position (like a pin number). It is the "slide and multiply" tool for binary data:
 - **High-Speed Multiplication**: If you need to multiply by 2, 4, 8, etc., `<<` is significantly faster than the `*` operator on a microcontroller.
 - **Creating Bit Masks**: Instead of memorizing that the 5th bit is "32", you can write (`1 << 5`). This is much more readable and tells other developers exactly which bit you are targeting.
