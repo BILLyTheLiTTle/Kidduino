@@ -11,7 +11,7 @@
 - Unlike a PC, the AVR CPU cannot read data directly from Flash using standard instructions. Therefore, by default, the startup script copies almost all .rodata from Flash into SRAM so the CPU can access it.
 - Examples:
   - String Literals (`"hello"`): 
-    - Stored in Flash, but copied to SRAM at startup.
+    - Stored in Flash, but copied to SRAM at startup. We still cannot change a part of a literal in case it was defined in a pointer (`char *`) due to String Pooling, so modifying the data via one pointer affects every other pointer referencing that literal! You need `char literal [] = "Hello";` to be able to modify each character!
     - Use the `F()` macro to keep them exclusively in Flash.
   - Global `const` / `static const` variables: 
     - Stored in Flash, but copied to SRAM at startup.
