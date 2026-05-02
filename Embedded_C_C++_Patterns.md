@@ -89,8 +89,9 @@ This way you could solve difficult pointer assignments using you mind! This is n
 
 ## Flash
 
-### Flash Memory String Macro (`F()`)
+### Flash Memory String Macro (`F()`, `__FlashStringHelper`)
 By default, any string literal you write—such as `Serial.print("Hello")`—is stored in Flash but copied into the very limited SRAM (Static RAM) as soon as the program starts. Since a typical Arduino Uno has only **2 KB** of SRAM, a few dozen long print statements can easily cause a system crash. The `F()` macro forces the compiler to keep the string in Flash and read it directly from there, byte-by-byte, whenever it is needed.
+If you want to use `F()` as parameter in a function, you need to declare this parameter using `__FlashStringHelper`.
 
 ### Flash Storage Keyword (`PROGMEM`)
 By default, even if a variable is `const` (constant), the Arduino architecture copies it from Flash into SRAM at startup so the CPU can access it quickly. `PROGMEM` overrides this behavior. It is the "manual" version of the `F()` macro, used for larger datasets like lookup tables, font bitmaps, or large arrays of strings that would otherwise instantly overwhelm your RAM. The most common pattern is "The Lookup Table".
