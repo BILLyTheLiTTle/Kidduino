@@ -56,6 +56,7 @@
 
 **HEAP**
 - Dynamic memory (`malloc`, `free`, `new`, `delete`)
+  - For example, if you don't use the `new` keyword, the object is still created but it lives in Stack, not in Heap. So no need to destruct or worry about memory fragmenation of multiple create/destroy actions
 - Grows upward in SRAM
 - Used rarely in safe embedded design (fragmentation risk)
 
