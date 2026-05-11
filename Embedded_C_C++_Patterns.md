@@ -36,7 +36,7 @@ See my other note with memory md file as well.
 ### Typedefs
 
 #### Integer-Pointer Conversion (`uintptr_t`)
-While a pointer (`void*`) is for referencing data, a `uintptr_t` is for calculating addresses. It is an integer type that matches the exact width of the CPU's address bus (e.g., 32 bits on an Arduino Uno/STM32 or 64 bits on a modern SoC). Using `uintptr_t` is the only "portable" and safe way to cast a pointer to an integer, as it ensures you won't accidentally truncate the address (lose bits) if you switch to a different processor architecture.
+While a pointer (`void*`) is for referencing data, a `uintptr_t` is for calculating addresses. It is an integer type that matches the exact width of the CPU's address bus (e.g., 32 bits on an Arduino Uno/STM32 or 64 bits on a modern SoC). Using `uintptr_t` is the only "portable" and safe way to cast a pointer to an integer, as it ensures you won't accidentally truncate the address (lose bits) if you switch to a different processor architecture. Apart from `uint16_t` we have also `int16_t` to be used when the difference between addresses might be negative, or when an API requires a signed integer.
 
 #### Object Size & Capacity (`size_t`)
 While `ptrdiff_t` is for the distance between pointers (signed), `size_t` is for the **magnitude** of memory (unsigned). It is guaranteed to be large enough to represent the size of the largest possible object your system can handle. In embedded systems, this is the "go-to" type for array indices, loop counters for buffers, and any function parameter that specifies a memory length (like `memcpy` or `memset`).
